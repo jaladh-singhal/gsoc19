@@ -13,7 +13,7 @@ Originally my proposed project: [Auto-generating Filter Curves & Photometry](htt
 ## What has been done?
 During this 3-month period, I got **30+ PRs merged** along with some direct commits to our repositories. You can find my weekly progress at [my python-gsoc blog](https://blogs.python-gsoc.org/en/jaladh-singhals-blog/) wherein I've also shared various things I learned each week. In this report, I have summarized my work as following deliverables:
 
-### Setup of CI/CD Azure pipelines for both packages
+### 1. Setup of CI/CD Azure pipelines for both packages
 Initially we were using Travis for CI(Continuous Integration) and RTD(Readthedocs) for deploying our docs, then we decided to deploy our docs to GH-pages and hence used Doctr. But then we found Azure pipelines to be more promising in terms of its customizability, so we ended up creating both CI and docs CD pipeline on Azure.
 - Setup Testing (CI) Pipeline for starkit - [#56](https://github.com/starkit/starkit/pull/56)
 - Setup CD (Continuous Deployment) pipeline for deploying starkit docs to gh-pages - [50f7167](https://github.com/starkit/starkit/commit/50f71671710101e2128f0c210a4fd92d80faf647)
@@ -25,7 +25,7 @@ Initially we were using Travis for CI(Continuous Integration) and RTD(Readthedoc
 - Made docs CD pipeline to execute the notebook when building docs, for which I made cached filter data available for execution by using Azure artifacts - [#40](https://github.com/starkit/wsynphot/pull/40)
 
 
-### Remodelling of the data access mechanism of WSynPhot
+### 2. Remodelling of the data access mechanism of WSynPhot
 While imaging stars, astronomical filters are used with telescopes to capture specific wavelengths of starlight. Wsynphot depends on this filter data (which we obtain from [SVO FPS](http://svo2.cab.inta-csic.es/theory/fps/)), for doing photometric calculations. There's an interesting story behind how I get into this work which not even planned. It all started with resolving an issue of unclean data and we ended up with having dedicated I/O modules for getting & caching filter data from SVO. We tried a lot of things and kept switching to better solutions in the process, so I also have some closed PRs for the work we dropped.
 
 Initially wsynphot accessed the filter data, by scraping it from SVO web interface and ingesting it in required format in an HDF file, which was then uploaded on a server. Since SVO keeps on updating, we decided to design a scheduled pipeline to auto ingest the updated filter data HDF file. While developing this, we found that there exists a VO interface (HTTP queries based API) for SVO which can be used to directly fetch data from SVO without ingesting it in HDF. Thus we dropped earlier code and I wrote a module to get data from SVO in real-time. But since it has a time & connectivity limitation, so we decided to create another module to cache the filter data as VOTables on user's disk. And I also designed a mechanism to update the cached data so that user have access to up-to-date filter data.
@@ -40,7 +40,7 @@ Initially wsynphot accessed the filter data, by scraping it from SVO web interfa
 - Reported several errors I recognised in filter data at SVO FPS by directly mailing their support, and got them fixed
 
 
-### Other fixes/improvements
+### 3. Other fixes/improvements
 - Reported CI build failure caused by pluggy v0.12 update, whose maintainers fixed the importlib_metadata conda package that was causing the problem - [#220](https://github.com/pytest-dev/pluggy/issues/220)
 - Removed python 2.7 support from both of our packages, now we only support python 3 - [#62](https://github.com/starkit/starkit/pull/62), [#28](https://github.com/starkit/wsynphot/pull/28)
 - Disabled use_2to3 flag in both the packages to make development mode of setup.py work properly in python3 - [#63](https://github.com/starkit/starkit/pull/63), [#38](https://github.com/starkit/wsynphot/pull/38)
@@ -51,7 +51,7 @@ Initially wsynphot accessed the filter data, by scraping it from SVO web interfa
 - Updated gitignore of starkit to ignore more no. of file types - [#66](https://github.com/starkit/starkit/pull/66)
 
 
-### Development of interactive Interfaces
+### 4. Development of interactive Interfaces
 Since we were done with most fixes so in last 2 weeks, I started exploring and experimenting with several tools that can create interactive web interfaces from Jupyter Notebooks.
 - Developed a [prototypical web app](https://mybinder.org/v2/gh/jaladh-singhal/starkit/binder?urlpath=voila%2Frender%2Finterfaces%2Finteractive_spectrum.ipynb) to interactively plot the spectrum of star using voila & mybinder - [35c6a26](https://github.com/jaladh-singhal/starkit/commit/35c6a2616c014785a410dcef09371e609e00d474)...[433bebd](https://github.com/jaladh-singhal/starkit/commit/433bebd99eff1bc10103e5b892eeac44dea7385c)
 - Added an example notebook in starkit docs to interactively plot spectrum of star, so that users can use it locally - [#65](https://github.com/starkit/starkit/pull/65)
