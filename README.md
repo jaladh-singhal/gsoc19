@@ -1,5 +1,6 @@
 # Google Summer of Code 2019, with PSF SubOrg: StarKit
-![gsoc](gsoc_logo.png)
+<p align="center"> <img src="gsoc_logo.png" height="400" /> </p>
+
 It was an incredible learning experience with GSoC and StarKit! I can't believe three months have passed so quick that I'm writing this final report, summarizing all the exciting work I did in these Summers (27 May - 26 Aug 2019).
 
 
