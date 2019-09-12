@@ -58,7 +58,7 @@ Since we were done with most fixes so in last 2 weeks, I started exploring and e
 
 
 ### TL;DR
-All of my work during GSoC (and even pre-GSoC) period can be accessed from [this complete list](https://github.com/pulls?page=2&q=author%3Ajaladh-singhal+created%3A%3C2019-08-26+user%3Astarkit+user%3Atardis-sn+user%3Aastropy+user%3Apytest-dev&utf8=%E2%9C%93) of issues & PRs I created.
+All of my work during GSoC (and even pre-GSoC) period can be accessed from [this complete list](https://github.com/pulls?q=author%3Ajaladh-singhal+created%3A%3C2019-08-26+user%3Astarkit+user%3Atardis-sn+user%3Aastropy+user%3Apytest-dev&utf8=%E2%9C%93) of issues & PRs I created.
 
 ## What is left to do?
 Yet GSoC has ended but my contributions to StarKit won't end! I've planned to develop interactive Photometry interface (part of my proposal) post GSoC. Since no such interface exists yet, therefore I am eager to contribute it to Astronomy community.
